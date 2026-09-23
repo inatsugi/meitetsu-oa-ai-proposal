@@ -1,0 +1,340 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="名鉄グループにおけるLINE公式アカウント AIモードの活用構想。名鉄観光、名鉄インプレス、名鉄ホテルズ、CentX、名鉄バスの体験イメージを紹介します。">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='27' fill='%23fff' stroke='%23e60012' stroke-width='5'/%3E%3Ccircle cx='32' cy='32' r='13' fill='%23e60012'/%3E%3C/svg%3E">
+  <title>名鉄グループ OA AIモード活用構想</title>
+  <style>
+    :root {
+      --navy:#0a1746;
+      --navy-2:#162966;
+      --red:#e60012;
+      --green:#06c755;
+      --sky:#eaf4ff;
+      --ink:#151b2b;
+      --muted:#687083;
+      --line:#dfe4ec;
+      --paper:#ffffff;
+      --wash:#f4f6f9;
+      --shadow:0 28px 70px rgba(17,28,60,.14);
+      --radius:28px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;color:var(--ink);background:var(--paper);font-family:-apple-system,BlinkMacSystemFont,"Noto Sans JP","Yu Gothic",Meiryo,sans-serif;line-height:1.7}
+    button,a{font:inherit}
+    button{cursor:pointer}
+    img{max-width:100%;display:block}
+    a{color:inherit}
+    .wrap{width:min(1180px,calc(100% - 40px));margin:auto}
+    .site-header{position:sticky;top:0;z-index:30;background:rgba(255,255,255,.92);backdrop-filter:blur(16px);border-bottom:1px solid rgba(10,23,70,.08)}
+    .site-header .inner{height:72px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+    .brand{display:flex;align-items:center;gap:11px;text-decoration:none;font-weight:700;color:var(--navy)}
+    .brand-mark{width:34px;height:34px;border-radius:50%;background:var(--red);position:relative;box-shadow:inset 0 0 0 7px #fff;border:2px solid var(--red)}
+    .brand small{display:block;color:var(--muted);font-size:10px;letter-spacing:.08em;font-weight:600}
+    .header-nav{display:flex;align-items:center;gap:24px;font-size:13px;font-weight:600}
+    .header-nav a{text-decoration:none;color:#3f4658}
+    .header-nav .cta{padding:10px 16px;border-radius:999px;background:var(--navy);color:#fff}
+    .eyebrow{margin:0 0 14px;color:var(--red);font-weight:700;font-size:12px;letter-spacing:.13em;text-transform:uppercase}
+    .section-title{font-size:clamp(28px,4vw,48px);line-height:1.25;letter-spacing:-.035em;margin:0;color:var(--navy)}
+    .section-lead{max-width:720px;margin:18px 0 0;color:var(--muted);font-size:16px}
+    .hero{overflow:hidden;background:linear-gradient(145deg,#f8fbff 0%,#eef4ff 52%,#fff 52%);padding:72px 0 84px}
+    .hero-grid{display:grid;grid-template-columns:minmax(0,1fr) 500px;gap:64px;align-items:center}
+    .hero h1{font-size:clamp(40px,6vw,72px);line-height:1.13;letter-spacing:-.055em;color:var(--navy);margin:0}
+    .hero h1 span{color:var(--red)}
+    .hero-copy{font-size:18px;color:#50596d;max-width:650px;margin:26px 0}
+    .hero-points{display:flex;flex-wrap:wrap;gap:9px;margin:26px 0 30px;padding:0;list-style:none}
+    .hero-points li{font-size:12px;font-weight:700;color:var(--navy);background:#fff;border:1px solid #dbe3f2;border-radius:999px;padding:8px 12px}
+    .hero-note{font-size:11px;color:var(--muted)}
+    .phone-stage{position:relative;min-height:650px;display:grid;place-items:center}
+    .halo{position:absolute;width:470px;height:470px;border-radius:50%;background:radial-gradient(circle at 45% 45%,rgba(230,0,18,.16),rgba(45,105,215,.08) 45%,transparent 68%)}
+    .phone{position:relative;width:340px;background:#fff;border:9px solid #0d1017;border-radius:42px;box-shadow:0 35px 75px rgba(10,23,70,.28);overflow:hidden;z-index:2}
+    .phone-top{height:30px;background:#fff;display:flex;align-items:center;justify-content:space-between;padding:0 17px;font-size:10px;font-weight:700}
+    .phone-head{height:58px;display:flex;align-items:center;gap:10px;border-bottom:1px solid #e7e9ee;padding:0 12px}
+    .phone-head .back{font-size:23px;color:#111}
+    .verified{width:27px;height:27px;border-radius:50%;background:var(--green);color:#fff;display:grid;place-items:center;font-size:13px}
+    .phone-head strong{font-size:15px;flex:1}
+    .phone-head .icons{letter-spacing:5px;color:#1f2430}
+    .phone-mode{display:flex;gap:6px;padding:8px 10px;border-bottom:1px solid #eef0f3}
+    .phone-mode span{font-size:9px;padding:5px 8px;border-radius:999px;border:1px solid #dedfe4}
+    .phone-mode .active{border-color:#9e7fff;color:#6e46e8;background:#f3efff}
+    .talk{min-height:492px;background:#91b3df;padding:14px 10px 18px;position:relative}
+    .date{text-align:center;color:#fff;font-size:9px;margin-bottom:10px}
+    .bubble{font-size:12px;line-height:1.55;padding:9px 11px;margin:8px 0;max-width:88%;box-shadow:0 1px 1px rgba(0,0,0,.08)}
+    .bubble.user{margin-left:auto;background:#9cf472;border-radius:13px 13px 4px 13px}
+    .bubble.ai{background:#fff;border-radius:4px 13px 13px 13px}
+    .live-card{background:#fff;border-radius:15px;margin-top:10px;overflow:hidden;box-shadow:0 12px 30px rgba(24,43,82,.22)}
+    .live-card .image{height:132px;background:url('assets/hotels-hero.webp') center/cover;position:relative}
+    .live-card .image:after{content:"会話から生成された提案";position:absolute;left:10px;top:10px;color:#fff;background:rgba(10,23,70,.82);padding:5px 7px;border-radius:5px;font-size:8px}
+    .live-body{padding:11px}
+    .live-body strong{font-size:13px;color:var(--navy);display:block}
+    .live-body p{font-size:9px;color:#707787;margin:3px 0 9px}
+    .live-row{display:grid;grid-template-columns:repeat(3,1fr);gap:5px}
+    .live-row span{background:#f4f6fa;border-radius:7px;padding:6px 4px;text-align:center;font-size:8px;color:#555e70}
+    .live-action{margin-top:9px;width:100%;border:0;border-radius:8px;color:#fff;background:var(--navy);padding:9px;font-size:10px;font-weight:700}
+    .phone-input{height:48px;padding:7px 9px;display:flex;gap:7px;align-items:center;background:#fff}
+    .mic{width:34px;height:34px;border-radius:50%;border:0;background:var(--green);display:grid;place-items:center}
+    .fake-input{flex:1;border:1px solid #e0e2e7;border-radius:999px;padding:7px 10px;color:#a3a8b2;font-size:9px}
+    .float-card{position:absolute;z-index:3;background:#fff;border:1px solid #e3e7ef;border-radius:16px;box-shadow:var(--shadow);padding:14px 15px;width:205px}
+    .float-card b{display:block;color:var(--navy);font-size:12px}
+    .float-card span{font-size:9px;color:var(--muted)}
+    .float-card.one{left:-10px;top:90px}.float-card.two{right:-18px;bottom:90px}
+    .signal{display:flex;gap:4px;margin-bottom:7px}.signal i{width:7px;height:7px;border-radius:50%;background:var(--green)}
+    .section{padding:104px 0}
+    .section.soft{background:var(--wash)}
+    .mode-grid{display:grid;grid-template-columns:330px 1fr;gap:70px;align-items:center;margin-top:46px}
+    .current-shot{height:520px;overflow:hidden;border-radius:30px;box-shadow:var(--shadow);background:#fff;border:1px solid #e6e9ef}
+    .current-shot img{width:100%;height:100%;object-fit:cover;object-position:top}
+    .mode-flow{display:grid;gap:18px}
+    .mode-step{display:grid;grid-template-columns:54px 1fr;gap:18px;align-items:start;padding:20px 0;border-bottom:1px solid var(--line)}
+    .mode-step:last-child{border-bottom:0}
+    .mode-no{width:48px;height:48px;border-radius:15px;background:var(--navy);color:#fff;display:grid;place-items:center;font-weight:800}
+    .mode-step h3{margin:0;color:var(--navy);font-size:20px}
+    .mode-step p{margin:5px 0 0;color:var(--muted);font-size:14px}
+    .mode-step em{font-style:normal;color:var(--red);font-weight:700}
+    .contrast{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:32px}
+    .contrast article{padding:22px;border-radius:18px;background:#fff;border:1px solid var(--line)}
+    .contrast article:last-child{border-color:#acdcbc;background:#effbf3}
+    .contrast small{color:var(--muted);font-weight:700}
+    .contrast b{display:block;margin-top:7px;color:var(--navy)}
+    .scenario-head{display:flex;align-items:end;justify-content:space-between;gap:30px;margin-bottom:34px}
+    .company-tabs{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 30px}
+    .company-tab{border:1px solid #d9dfe9;background:#fff;color:#4b5365;border-radius:999px;padding:10px 15px;font-size:12px;font-weight:700}
+    .company-tab.active{background:var(--navy);border-color:var(--navy);color:#fff}
+    .scenario-panel{display:grid;grid-template-columns:minmax(0,1.05fr) 360px minmax(0,.78fr);gap:28px;align-items:start}
+    .scenario-story{min-width:0}
+    .company-visual{height:260px;border-radius:24px;overflow:hidden;position:relative;background:#dce4ef}
+    .company-visual img.hero-img{width:100%;height:100%;object-fit:cover}
+    .company-visual:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(7,17,48,.74),rgba(7,17,48,.08) 70%)}
+    .company-logo{position:absolute;z-index:2;left:24px;top:24px;max-width:175px;max-height:42px;object-fit:contain;object-position:left;background:rgba(255,255,255,.9);padding:8px 10px;border-radius:8px}
+    .company-name-text{position:absolute;z-index:2;left:25px;top:25px;color:#fff;font-weight:800;font-size:18px;letter-spacing:.04em}
+    .visual-copy{position:absolute;z-index:2;left:25px;right:25px;bottom:22px;color:#fff}
+    .visual-copy small{font-size:10px;opacity:.84}.visual-copy h3{font-size:25px;line-height:1.35;margin:4px 0 0}
+    .stage-tabs{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin:14px 0}
+    .stage-tab{border:1px solid var(--line);background:#fff;padding:9px 4px;border-radius:10px;font-size:10px;font-weight:700;color:#626a7d}
+    .stage-tab.active{background:var(--red);border-color:var(--red);color:#fff}
+    .step-copy{border-left:4px solid var(--red);padding:4px 0 4px 15px;min-height:84px}
+    .step-copy b{display:block;color:var(--navy);font-size:17px}.step-copy p{margin:5px 0 0;color:var(--muted);font-size:13px}
+    .demo-phone{width:100%;background:#fff;border:7px solid #11141b;border-radius:33px;box-shadow:0 24px 50px rgba(18,29,55,.18);overflow:hidden}
+    .demo-head{height:55px;padding:0 12px;display:flex;align-items:center;gap:8px;border-bottom:1px solid #e8eaf0;font-size:12px;font-weight:700}
+    .demo-head .check{width:22px;height:22px;border-radius:50%;background:var(--green);color:#fff;display:grid;place-items:center}.demo-head b{flex:1}
+    .demo-body{min-height:430px;background:#91b3df;padding:12px 9px;position:relative}
+    .demo-msg{font-size:11px;line-height:1.5;padding:8px 9px;margin:7px 0;max-width:88%}.demo-msg.user{background:#9cf472;margin-left:auto;border-radius:12px 12px 4px 12px}.demo-msg.ai{background:#fff;border-radius:4px 12px 12px 12px}
+    .demo-status{display:flex;align-items:center;gap:5px;color:#fff;font-size:8px;margin:8px 0}.demo-status i{width:6px;height:6px;border-radius:50%;background:var(--green)}
+    .demo-live{background:#fff;border-radius:14px;overflow:hidden;box-shadow:0 12px 25px rgba(20,35,75,.2)}
+    .demo-live-image{height:110px;background:center/cover;position:relative}.demo-live-image:after{content:"LIVE UI";position:absolute;top:8px;left:8px;color:#fff;background:rgba(10,23,70,.8);padding:4px 6px;border-radius:5px;font-size:8px}
+    .demo-live-copy{padding:10px}.demo-live-copy b{color:var(--navy);font-size:12px}.demo-live-copy p{margin:2px 0 8px;color:var(--muted);font-size:8px}
+    .demo-facts{display:grid;grid-template-columns:repeat(3,1fr);gap:4px}.demo-facts span{background:#f3f5f8;border-radius:6px;padding:5px 3px;text-align:center;font-size:7px;color:#5d6575}
+    .demo-next{width:100%;border:0;background:var(--navy);color:#fff;padding:9px;border-radius:8px;margin-top:8px;font-size:9px;font-weight:700}
+    .demo-input{height:44px;display:flex;gap:6px;padding:6px 8px;align-items:center}.demo-input button{width:31px;height:31px;border-radius:50%;border:0;background:var(--green)}.demo-input span{flex:1;border:1px solid #e1e4ea;border-radius:999px;padding:6px 8px;color:#a0a5af;font-size:8px}
+    .voice-layer{position:absolute;inset:80px 22px auto;background:#fff;border-radius:15px;padding:18px;text-align:center;box-shadow:0 18px 44px rgba(0,0,0,.28);display:none;z-index:5}.voice-layer.show{display:block;animation:rise .3s ease}.voice-wave{display:flex;height:25px;align-items:center;justify-content:center;gap:3px}.voice-wave i{width:4px;border-radius:5px;background:var(--green);animation:wave .6s ease-in-out infinite alternate}.voice-wave i:nth-child(odd){height:9px}.voice-wave i:nth-child(even){height:22px}.voice-layer b{display:block;font-size:11px}.voice-layer small{color:var(--muted);font-size:8px}
+    .company-facts{padding:22px;border-radius:22px;background:#fff;border:1px solid var(--line)}
+    .company-facts h4{margin:0 0 12px;color:var(--navy);font-size:15px}.company-facts ul{padding:0;margin:0;list-style:none;display:grid;gap:9px}.company-facts li{font-size:12px;color:#535c70;padding-left:17px;position:relative}.company-facts li:before{content:"";position:absolute;left:0;top:.7em;width:7px;height:7px;border-radius:50%;background:var(--red)}
+    .why-box{margin-top:14px;padding:18px;border-radius:18px;background:var(--navy);color:#fff}.why-box small{opacity:.68}.why-box b{display:block;margin-top:5px;font-size:14px;line-height:1.55}
+    .cap-list{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px}.cap-list span{font-size:9px;border:1px solid rgba(255,255,255,.3);border-radius:999px;padding:5px 8px}.cap-list span.on{background:var(--green);border-color:var(--green);color:#082516}
+    .architecture{display:grid;grid-template-columns:1fr 1.2fr 1fr;gap:24px;align-items:center;margin-top:50px}
+    .arch-group{background:#fff;border:1px solid var(--line);border-radius:24px;padding:24px;min-height:280px}
+    .arch-group h3{margin:0 0 18px;color:var(--navy);font-size:18px}.arch-group p{color:var(--muted);font-size:12px}
+    .arch-item{padding:12px 0;border-bottom:1px solid var(--line)}.arch-item:last-child{border-bottom:0}.arch-item b{display:block;color:var(--navy);font-size:13px}.arch-item span{display:block;color:var(--muted);font-size:10px;margin-top:2px}
+    .arch-core{position:relative;background:linear-gradient(145deg,var(--navy),#213b91);color:#fff;border-radius:30px;padding:30px;box-shadow:var(--shadow)}
+    .arch-core h3{margin:0 0 8px;font-size:21px}.arch-core>p{margin:0 0 20px;font-size:12px;opacity:.7}.agent-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}.agent{background:rgba(255,255,255,.11);border:1px solid rgba(255,255,255,.2);border-radius:15px;padding:15px}.agent b{font-size:12px}.agent span{display:block;font-size:9px;opacity:.7;margin-top:4px}.arch-arrow{text-align:center;font-size:10px;color:var(--muted);margin:10px 0}.arch-arrow strong{display:block;color:var(--green);font-size:18px}
+    .guardrail{margin-top:14px;border-top:1px solid rgba(255,255,255,.2);padding-top:13px;font-size:10px;opacity:.8}
+    .poc-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px;margin-top:44px}.poc-card{padding:25px;border-radius:22px;background:#fff;border:1px solid var(--line)}.poc-card .num{color:var(--red);font-size:12px;font-weight:800}.poc-card h3{margin:8px 0;color:var(--navy);font-size:19px}.poc-card p{margin:0;color:var(--muted);font-size:12px}.poc-card ul{margin:14px 0 0;padding-left:18px;color:#4f586a;font-size:11px}
+    .decision{margin-top:25px;padding:26px;border-radius:24px;background:linear-gradient(120deg,#e9f9ee,#f7fbff);border:1px solid #b8e2c6;display:flex;align-items:center;justify-content:space-between;gap:28px}.decision h3{margin:0;color:var(--navy)}.decision p{margin:5px 0 0;color:var(--muted);font-size:12px}.decision b{color:#087a38;font-size:14px}
+    .sources{display:grid;grid-template-columns:1fr 1fr;gap:20px}.source-list{margin:0;padding:0;list-style:none}.source-list li{padding:9px 0;border-bottom:1px solid var(--line);font-size:11px}.source-list a{color:var(--navy)}
+    .disclaimer{font-size:11px;color:var(--muted);background:#f7f8fa;border:1px solid var(--line);border-radius:18px;padding:18px}
+    footer{background:var(--navy);color:#fff;padding:30px 0}.footer-inner{display:flex;justify-content:space-between;gap:20px;font-size:11px;opacity:.76}
+    @keyframes rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+    @keyframes wave{from{transform:scaleY(.55)}to{transform:scaleY(1)}}
+    @media(max-width:980px){.hero-grid{grid-template-columns:1fr}.phone-stage{min-height:620px}.mode-grid{grid-template-columns:280px 1fr;gap:35px}.scenario-panel{grid-template-columns:1fr 330px}.company-facts{grid-column:1/-1}.architecture{grid-template-columns:1fr}.poc-grid{grid-template-columns:1fr}.header-nav a:not(.cta){display:none}}
+    @media(max-width:700px){.wrap{width:min(100% - 24px,1180px)}.hero{padding-top:50px}.hero h1{font-size:42px}.float-card{display:none}.section{padding:74px 0}.mode-grid{grid-template-columns:1fr}.current-shot{height:420px;max-width:280px;margin:auto}.contrast{grid-template-columns:1fr}.scenario-panel{grid-template-columns:1fr}.demo-phone{max-width:340px;margin:auto}.company-facts{grid-column:auto}.scenario-head{display:block}.stage-tabs{grid-template-columns:1fr 1fr}.sources{grid-template-columns:1fr}.decision{display:block}.decision b{display:block;margin-top:14px}.footer-inner{display:block}.company-tabs{flex-wrap:nowrap;overflow-x:auto;padding-bottom:5px}.company-tab{white-space:nowrap}.hero-copy{font-size:16px}.architecture{margin-top:30px}}
+    @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap inner">
+      <a class="brand" href="#top"><span class="brand-mark" aria-hidden="true"></span><span>名鉄グループ<br><small>OA AI MODE CONCEPT</small></span></a>
+      <nav class="header-nav" aria-label="ページ内メニュー"><a href="#why">OA AIモードとは</a><a href="#scenarios">5社の活用構想</a><a href="#architecture">実現イメージ</a><a class="cta" href="#poc">PoC案</a></nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <div>
+          <p class="eyebrow">Concept proposal / September 2026</p>
+          <h1>「探す」を減らし、<br><span>相談から実行</span>まで<br>LINEでつなぐ</h1>
+          <p class="hero-copy">名鉄グループのLINE公式アカウントを、情報配信の入口から、旅行・レジャー・宿泊・移動を会話で選び、そのまま予約や購入へ進める接点へ。</p>
+          <ul class="hero-points"><li>音声・自然言語で相談</li><li>回答に応じて会話を分岐</li><li>候補を画面上で比較</li><li>API／MCPで予約・購入へ</li></ul>
+          <p class="hero-note">本ページはOA AIモードのPoC活用構想を示す提案用モックアップです。実際の仕様・提供時期・連携範囲を示すものではありません。</p>
+        </div>
+        <div class="phone-stage" aria-label="OA AIモードの利用イメージ">
+          <div class="halo"></div>
+          <div class="float-card one"><div class="signal"><i></i><i></i><i></i></div><b>会話から条件を整理</b><span>誰と、いつ、何をしたいかを自然に確認</span></div>
+          <div class="phone">
+            <div class="phone-top"><span>9:41</span><span>5G　●</span></div>
+            <div class="phone-head"><span class="back">‹</span><span class="verified">✓</span><strong>名鉄グループ</strong><span class="icons">◷☰</span></div>
+            <div class="phone-mode"><span class="active">AIモード</span><span>おでかけ</span><span>ID連携</span></div>
+            <div class="talk">
+              <div class="date">本日</div>
+              <div class="bubble user">母の誕生日に、犬山でゆっくり一泊したい。景色のよい部屋がいいな。</div>
+              <div class="bubble ai">お誕生日のお祝いですね。お部屋・お食事・移動をまとめてご提案します。</div>
+              <div class="live-card">
+                <div class="image"></div>
+                <div class="live-body"><strong>犬山で過ごす記念日の旅</strong><p>会話内容に合わせて、宿泊と移動の候補を組みました。</p><div class="live-row"><span>1泊2日</span><span>眺望重視</span><span>和食</span></div><button class="live-action" type="button">プランを比較する</button></div>
+              </div>
+            </div>
+            <div class="phone-input"><button class="mic" type="button" aria-label="音声で相談">●</button><div class="fake-input">メッセージまたは音声で相談</div></div>
+          </div>
+          <div class="float-card two"><b>予約・購入まで実行</b><span>在庫・空き・運行情報を照会し、次の画面へ引継ぎ</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="why">
+      <div class="wrap">
+        <p class="eyebrow">Why OA AI mode</p>
+        <h2 class="section-title">現在のOA接点を、双方向の「AI接客」へ</h2>
+        <p class="section-lead">現行OAの配信力とリッチメニューを活かしながら、ユーザーの回答に応じて次の質問・提案を変え、外部システムと連携して行動まで進めます。</p>
+        <div class="mode-grid">
+          <figure class="current-shot"><img src="assets/current-oa.png" alt="名鉄グループLINE公式アカウントの現行画面参考"></figure>
+          <div>
+            <div class="mode-flow">
+              <article class="mode-step"><div class="mode-no">1</div><div><h3>配信から相談を始める</h3><p>季節の旅行、施設イベント、ホテルプラン、交通情報を届けた後、ユーザーが<em>その場でAIへ相談</em>できます。</p></div></article>
+              <article class="mode-step"><div class="mode-no">2</div><div><h3>回答によって提案を変える</h3><p>すぐ検討したい人には条件を確認。比較中の人には違いを整理。不安が強い場合は有人対応へ引き継ぎます。</p></div></article>
+              <article class="mode-step"><div class="mode-no">3</div><div><h3>会話から実行へ進める</h3><p>商品・在庫・予約・運行などの既存APIをMCP化し、<em>申込・予約・購入・来店</em>につなげます。</p></div></article>
+            </div>
+            <div class="contrast"><article><small>一般的なAIチャットbot</small><b>質問への回答やFAQ検索が中心</b></article><article><small>OA AIモードの目指す体験</small><b>相談内容を整理し、比較画面を生成。予約や購入まで進める</b></article></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section soft" id="scenarios">
+      <div class="wrap">
+        <div class="scenario-head"><div><p class="eyebrow">Five business scenarios</p><h2 class="section-title">5社それぞれの活用構想</h2></div><p class="section-lead">各社の公式サイトで確認できる既存サービスを起点に、OA AIモードが担う体験を分けて設計しています。</p></div>
+        <div class="company-tabs" role="tablist" aria-label="会社を選択" id="companyTabs"></div>
+        <div class="scenario-panel" id="scenarioPanel" role="tabpanel" aria-live="polite">
+          <div class="scenario-story">
+            <div class="company-visual" id="companyVisual"><img class="hero-img" id="companyHero" alt=""><img class="company-logo" id="companyLogo" alt=""><div class="company-name-text" id="companyNameText"></div><div class="visual-copy"><small id="scenarioType"></small><h3 id="scenarioTitle"></h3></div></div>
+            <div class="stage-tabs" id="stageTabs" aria-label="体験ステップ"></div>
+            <div class="step-copy"><b id="stepTitle"></b><p id="stepBody"></p></div>
+          </div>
+
+          <div class="demo-phone" aria-label="LINE上の体験デモ">
+            <div class="demo-head"><span>‹</span><span class="check">✓</span><b id="demoAccount"></b><span>◷　☰</span></div>
+            <div class="demo-body">
+              <div class="voice-layer" id="voiceLayer"><div class="voice-wave"><i></i><i></i><i></i><i></i><i></i></div><b>音声を聞いています</b><small>話し終えると、希望を整理します</small></div>
+              <div class="date">本日</div>
+              <div class="demo-msg user" id="demoUser"></div>
+              <div class="demo-msg ai" id="demoAI"></div>
+              <div class="demo-status"><i></i><span id="demoStatus"></span></div>
+              <div class="demo-live"><div class="demo-live-image" id="demoLiveImage"></div><div class="demo-live-copy"><b id="demoLiveTitle"></b><p id="demoLiveSub"></p><div class="demo-facts" id="demoFacts"></div><button class="demo-next" id="demoNext" type="button"></button></div></div>
+            </div>
+            <div class="demo-input"><button id="demoMic" type="button" aria-label="音声で相談">●</button><span>メッセージまたは音声で相談</span></div>
+          </div>
+
+          <aside>
+            <div class="company-facts"><h4>公式サイトで確認できる既存接点</h4><ul id="officialFacts"></ul></div>
+            <div class="why-box"><small>この会社でOA AIモードを使う理由</small><b id="whyOA"></b><div class="cap-list" id="capList"></div></div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="architecture">
+      <div class="wrap">
+        <p class="eyebrow">PoC architecture concept</p>
+        <h2 class="section-title">企業の接客知識と既存システムをAIにつなぐ</h2>
+        <p class="section-lead">AIの振る舞いと会話制御はOA AIモード側で設計し、更新頻度の低いナレッジはRAGで参照。商品・空き・予約・運行などの動的情報と実行機能は、企業側の既存APIをMCP化して接続する想定です。</p>
+        <div class="architecture">
+          <div class="arch-group"><h3>企業から提供する内容</h3><div class="arch-item"><b>接客・提案ロジック</b><span>何を聞き、どの条件で何を勧めるか</span></div><div class="arch-item"><b>ナレッジ</b><span>施設、商品、FAQ、案内、禁止事項</span></div><div class="arch-item"><b>既存API／システム</b><span>在庫、空き、予約、運行、会員情報など</span></div></div>
+          <div class="arch-core"><h3>OA AIモード</h3><p>LINE上の会話と画面を制御</p><div class="agent-row"><div class="agent"><b>Master Agent</b><span>意図判定、ルーティング、ガードレール、有人引継ぎ</span></div><div class="agent"><b>Sub Agent</b><span>FAQ、レコメンド、予約などの領域別対応</span></div><div class="agent"><b>RAG</b><span>接客ナレッジを検索して回答へ反映</span></div><div class="agent"><b>会話連動UI</b><span>比較・選択・確認に適した画面を表示</span></div></div><div class="guardrail">複雑な相談、強い不安、個別判断が必要な場合は、AIが抱え込まず担当者へ引き継ぐ設計とします。</div></div>
+          <div class="arch-group"><h3>MCPで呼び出す機能</h3><div class="arch-item"><b>Resources</b><span>商品、在庫、予約状況、顧客属性など</span></div><div class="arch-item"><b>Tools</b><span>検索、空き確認、予約、購入、変更など</span></div><div class="arch-arrow"><strong>↕</strong>既存APIをMCP化</div><div class="arch-item"><b>各社システム</b><span>現行の販売・予約・運行基盤を活用</span></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section soft" id="poc">
+      <div class="wrap">
+        <p class="eyebrow">PoC proposal</p>
+        <h2 class="section-title">最初のPoCで確認すること</h2>
+        <p class="section-lead">5社同時の本格連携ではなく、各社1シナリオに絞り、会話が予約・購入・利用へつながるかを検証します。</p>
+        <div class="poc-grid"><article class="poc-card"><span class="num">01</span><h3>体験の成立性</h3><p>音声や自然な言葉から条件を整理し、利用者が迷わず候補を選べるか。</p><ul><li>シナリオ完了率</li><li>比較画面到達率</li><li>離脱箇所</li></ul></article><article class="poc-card"><span class="num">02</span><h3>事業成果との接続</h3><p>会話後に予約・購入・来場・乗車などの行動が増えるか。</p><ul><li>予約ページ遷移率</li><li>申込・購入率</li><li>有人引継ぎ後の成果</li></ul></article><article class="poc-card"><span class="num">03</span><h3>実装・運用の現実性</h3><p>必要なデータ、API、接客ルールを継続的に更新できるか。</p><ul><li>MCP接続対象</li><li>ナレッジ更新体制</li><li>個人情報・同意・権限</li></ul></article></div>
+        <div class="decision"><div><h3>ワークショップで決める内容</h3><p>対象ユーザー、変えたい行動、1本目の対話シナリオ、接続するAPI、PoCの成功基準を各社ごとに確定します。</p></div><b>1社1ユースケースから具体化</b></div>
+      </div>
+    </section>
+
+    <section class="section" id="sources">
+      <div class="wrap sources">
+        <div><p class="eyebrow">Sources</p><h2 class="section-title" style="font-size:28px">参照した公式情報</h2><ul class="source-list"><li><a href="https://www.mwt.co.jp/" target="_blank" rel="noreferrer">名鉄観光サービス 公式サイト</a></li><li><a href="https://www.meitetsu-impress.co.jp/" target="_blank" rel="noreferrer">名鉄インプレス 公式サイト</a></li><li><a href="https://meitetsu-hotels.com/" target="_blank" rel="noreferrer">名鉄ホテルズ 公式サイト</a></li><li><a href="https://www.meitetsu.co.jp/centx/info/" target="_blank" rel="noreferrer">CentX 公式サイト</a></li><li><a href="https://www.meitetsu-bus.co.jp/" target="_blank" rel="noreferrer">名鉄バス 公式サイト</a></li></ul><p class="hero-note">参照日：2026年9月23日</p></div>
+        <div class="disclaimer"><b>ご確認事項</b><br>本ページのシナリオ、画面、会話、価格、空き、通知、ID連携、予約・購入機能は提案用の構想です。各社が現在提供している機能を示すものではありません。実装可否、利用データ、外部システム連携、個人情報の取扱い、有人対応、提供時期は、PoC要件定義と各社の確認を経て決定します。掲載画像は各社公式サイトおよび提供資料を参照しています。</div>
+      </div>
+    </section>
+  </main>
+
+  <footer><div class="wrap footer-inner"><span>名鉄グループ OA AIモード活用構想</span><span>Concept mockup for discussion</span></div></footer>
+
+  <script>
+    const companies=[
+      {
+        tab:'名鉄観光',name:'名鉄観光サービス',account:'名鉄観光サービス',hero:'assets/mwt-the65.jpg',logo:'assets/mwt-hero.gif',type:'TRAVEL CONCIERGE',title:'曖昧な希望を、予約できる旅行商品へ',why:'旅行先が決まる前から相談を受け、比較画面と商品検索を組み合わせて予約へ進められるため。',
+        facts:['国内・海外ツアー','国内宿泊、ホテル・旅館','ダイナミックパッケージ','クルーズ、ハイキングなど','24時間オンライン申込'],caps:['音声相談','商品検索','空席・価格','予約','後日フォロー'],
+        steps:[
+          ['相談','希望を言葉にする','旅行先が決まっていない利用者から、同行者、予算、移動負担、興味を会話で確認する。','夫婦で秋に旅行したい。歩く距離は少なめで、食事を楽しみたい。','ご希望を整理して、国内ツアーと宿泊プランから候補を探します。','意図と旅行条件を整理しました','ゆったり楽しむ秋の旅','国内ツアーと宿泊を比較',['2泊3日','歩行少なめ','食事重視'],'候補を比較する'],
+          ['比較','旅行案を比較する','行程、移動時間、価格、食事を同じ画面に表示し、追加の希望で候補を組み替える。','2つ目がいいけど、夕食は個室がいいな。','個室食を選べるプランに変更し、料金と移動時間を更新しました。','会話に合わせて比較画面を更新しました','温泉と郷土料理の旅','条件に合う2案を比較',['概算料金','移動時間','夕食条件'],'このプランを見る'],
+          ['実行','空きと料金を確認する','商品・在庫・予約APIをMCP化し、会話で決めた条件を保ったまま申込へ引き継ぐ。','この内容で予約できる？','現在の空き状況を確認しました。内容を確認して予約手続きへ進めます。','商品APIで空き・料金を照会しました','予約内容の確認','選択条件を申込へ引継ぎ',['2名','2泊3日','空きあり'],'予約手続きへ'],
+          ['継続','出発前後もLINEで支える','出発前の案内、変更相談、旅行後の感想取得と次回提案を同じOAで行う。','現地の天気と、持ち物を教えて。','朝晩は冷え込む予報です。旅程と合わせて準備リストをご案内します。','旅行予定をもとに出発前案内を生成しました','出発前サポート','旅程・天候・持ち物を確認',['晴れ','8–17℃','3日後'],'旅程を確認する']]
+      },
+      {
+        tab:'名鉄インプレス',name:'名鉄インプレス',account:'名鉄レジャー公式',hero:'assets/impress-hero.jpg',logo:'assets/impress-logo.svg',type:'LEISURE PLANNER',title:'家族ごとの一日の楽しみ方を作る',why:'複数施設の中から目的に合う場所を選び、来場前の計画と当日の回遊を会話に合わせて変えられるため。',
+        facts:['日本モンキーパーク','南知多ビーチランド／おもちゃ王国','リトルワールド','博物館 明治村','スクール等のライフソリューション'],caps:['施設診断','回遊プラン','天候対応','チケット','体験予約'],
+        steps:[
+          ['相談','家族に合う施設を選ぶ','子どもの年齢、同行者、滞在時間、歩行負担を聞き、施設と過ごし方を提案する。','5歳と12歳、祖母も一緒。全員が楽しめて、歩きすぎない場所がいい。','三世代で楽しめる施設と、休憩を入れた過ごし方をご提案します。','家族構成と過ごし方を理解しました','三世代で楽しむ一日','施設と体験を提案',['子ども2人','祖母同行','歩行少なめ'],'候補を見る'],
+          ['比較','施設と体験を比較する','対象施設の特徴、移動負担、食事、体験を画面上で比較する。','生きものが好き。雨でも楽しめるといいな。','ふれあい体験と屋内で過ごせる時間を含むプランを優先します。','施設情報から比較UIを生成しました','家族向けレジャー比較','興味・天候・負担で比較',['ふれあい','雨天対応','休憩あり'],'一日のプランを見る'],
+          ['実行','チケットと体験へ進む','選んだ施設のチケットや体験予約へ、人数と日時を引き継ぐ。','このプランで必要なチケットを取りたい。','人数と日付を引き継ぎ、購入可能なチケットをご案内します。','チケット情報を照会しました','来場準備','チケットと体験枠を確認',['大人2','子ども2','指定日'],'購入・予約へ'],
+          ['継続','当日にプランを組み替える','天候や到着時間が変わった場合、体験の順番と回遊ルートを更新する。','雨が強くなってきた。予定通り回れる？','屋内中心の順番に変更します。予約済みの体験時刻は維持できます。','当日の状況に合わせて再計画しました','雨天プラン','屋内中心の回遊へ更新',['屋内中心','移動短縮','予約維持'],'更新プランを見る']]
+      },
+      {
+        tab:'名鉄ホテルズ',name:'名鉄ホテルズ',account:'名鉄ホテルズ',hero:'assets/hotels-hero.webp',logo:'assets/hotels-logo.svg',type:'STAY CONCIERGE',title:'宿泊目的から、部屋と過ごし方を提案する',why:'空室検索だけでは分からない宿泊目的を理解し、ホテル選び、食事、予約前後の案内を一つの会話で扱えるため。',
+        facts:['名古屋・東海を中心としたホテル','複数のホテルブランド','公式サイトでの宿泊予約','レストラン・朝食','宴会・会議'],caps:['目的理解','ホテル比較','空室・料金','予約','宿泊前案内'],
+        steps:[
+          ['相談','宿泊の目的を理解する','日付と人数に加え、記念日、同行者、希望する過ごし方を聞く。','母の誕生日に犬山で一泊したい。景色がよくて静かな部屋がいい。','お誕生日のお祝いですね。お部屋とお食事を組み合わせてご提案します。','宿泊目的と希望を理解しました','記念日の宿泊','目的に合う滞在を提案',['2名','誕生日','眺望重視'],'候補を見る'],
+          ['比較','ホテルと滞在内容を比べる','立地・客室・食事・チェックアウト時刻をまとめて比較する。','夕食は和食で、朝はゆっくりしたい。','和食付きで、ゆっくり滞在できるプランを優先しました。','宿泊条件から比較UIを生成しました','眺望客室と和食','部屋・食事・滞在時間',['眺望','和食','ゆったり'],'空室を見る'],
+          ['実行','空室とオプションを予約へ反映','空室・料金・予約APIをMCP化し、会話で選んだ条件を予約へ引き継ぐ。','ケーキも付けて、この部屋を予約したい。','空室があります。ケーキのメッセージを入力すると予約に追加できます。','予約システムで空室を確認しました','誕生日ステイ','客室とオプションを確認',['1室','朝夕食','ケーキ'],'予約を確定する'],
+          ['継続','宿泊前と滞在中を支える','到着予定、食事時間、館内案内などを予約情報とつなげる。','到着が18時頃になりそう。夕食は大丈夫？','到着予定を18時に更新し、夕食時間の候補をご案内します。','予約情報に変更内容を反映します','明日のご滞在','到着と夕食を確認',['18:00着','夕食19:00','晴れ'],'変更を確認する']]
+      },
+      {
+        tab:'名古屋鉄道／CentX',name:'名古屋鉄道／CentX',account:'名鉄おでかけ公式',hero:'assets/centx-hero.jpg',logo:'assets/centx-logo.svg',type:'OUTING AGENT',title:'行き先未定の気分を、今日の移動へ変える',why:'既存の乗換検索やWebチケットの手前で、時間・天気・同行者から目的地を提案し、CentXでの実行へ渡せるため。',
+        facts:['乗換案内・ルート検索','おでかけ情報','CentX webチケット','マイ駅・マイバス停','タクシー、シェアサイクル、交通系IC等'],caps:['目的地提案','経路検索','Webチケット','複数交通','行程再計画'],
+        steps:[
+          ['相談','目的地が決まる前から相談する','使える時間、天気、同行者、歩行負担から現実的なおでかけ先を提案する。','今日、名古屋から1時間くらいで行けて、景色がきれいな場所はある？','夕方までに戻れる候補を、おでかけ情報と経路から探します。','時間・天気・希望を整理しました','今日行ける小旅行','時間内に楽しめる目的地',['1時間以内','晴れ','夕方帰宅'],'候補を比較する'],
+          ['比較','目的地と移動を一緒に比べる','所要時間、運賃、現地滞在、チケットを同じ画面で比較する。','歩く時間が短い方がいい。','駅からの移動が短い候補を優先し、行程を更新しました。','おでかけ情報と経路を統合しました','犬山・夕方までの旅','目的地と交通を比較',['片道35分','徒歩少なめ','乗換なし'],'行程を見る'],
+          ['実行','CentXの機能へ引き継ぐ','選んだ行程から、経路検索や対象のWebチケットなどへ条件を保持して進む。','この列車で行く。切符はどうすればいい？','利用条件に合うチケットを確認し、CentXでの手続きへご案内します。','経路とチケット情報を確認しました','本日の行程','CentXへ条件を引継ぎ',['15:12発','乗換なし','17時台帰着'],'CentXで確認する'],
+          ['継続','移動中も行程を更新する','出発の遅れや運行状況に応じ、目的を保ったまま別の行程へ変更する。','予定より30分遅れた。まだ楽しめる？','次の列車に合わせ、現地の立ち寄り先を2か所に絞りました。','新しい出発時刻で再計画しました','16:02発に変更','短縮した行程を提示',['30分遅れ','滞在90分','帰宅19時'],'変更行程を見る']]
+      },
+      {
+        tab:'名鉄バス',name:'名鉄バス',account:'名鉄バス案内',hero:'assets/bus-hero.jpg',logo:'assets/bus-logo.png',type:'BUS JOURNEY SUPPORT',title:'時刻表を、「一人で到着できる安心」へ',why:'時刻・運賃だけでなく、乗り場、バス位置、乗車後の行動まで順番に示し、当日もLINEで支援できるため。',
+        facts:['路線バスの時刻・運賃検索','路線図、きっぷ','バス位置情報、のりば案内','高速バス','空港バス'],caps:['音声相談','時刻・運賃','バス位置','乗り場案内','再計画'],
+        steps:[
+          ['相談','停留所名が分からなくても相談する','施設名と到着希望時刻から、適切な便と乗り場を探す。','明日、市民病院に10時までに着きたい。どのバスか分からない。','最寄りの乗り場と、10時前に到着する便を順番にご案内します。','目的地と到着希望を理解しました','9:45着のバスプラン','乗車から到着まで案内',['9:02発','9:45着','徒歩4分'],'乗り方を見る'],
+          ['比較','乗車手順を画面で確認する','時刻だけでなく、乗り場の目印、車両表示、降車後の徒歩を順番に表示する。','駅のどの乗り場に行けばいい？','東口の乗り場です。案内板を目印に進む手順を表示します。','のりば情報を取得しました','乗り場への手順','目印と発車時刻を表示',['東口','発車9:02','余裕12分'],'次の手順を見る'],
+          ['実行','乗車準備を登録する','利用可能な案内・予約機能へつなぎ、出発前にLINEで再表示できるようにする。','忘れそうだから、出る時間に教えて。','出発前にお知らせし、この乗車案内をすぐ開けるようにします。','乗車予定を登録しました','明日 9:02発','出発前通知と経路',['通知8:45','乗り場保存','到着9:45'],'乗車予定を登録'],
+          ['継続','乗り遅れ時も案内を続ける','次の便や代替経路へ組み替え、目的地までの案内を止めない。','乗り場を間違えて、バスに乗れなかった。','次の便で9時58分に到着できます。新しい乗り場をご案内します。','次便の時刻と乗り場を検索しました','9:18発へ変更','次の便と乗り場を表示',['9:18発','9:58着','別乗り場'],'新しい案内を見る']]
+      }
+    ];
+
+    const q=id=>document.getElementById(id);
+    let companyIndex=0,stepIndex=0;
+    const statusNames=['相談内容を整理','比較画面を生成','MCP／APIを照会','次の接点へ引継ぎ'];
+    function renderTabs(){q('companyTabs').innerHTML='';companies.forEach((c,i)=>{const b=document.createElement('button');b.type='button';b.id='companyTab'+i;b.className='company-tab'+(i===companyIndex?' active':'');b.textContent=c.tab;b.setAttribute('role','tab');b.setAttribute('aria-controls','scenarioPanel');b.setAttribute('aria-selected',i===companyIndex?'true':'false');b.onclick=()=>{companyIndex=i;stepIndex=0;render()};q('companyTabs').appendChild(b)});q('scenarioPanel').setAttribute('aria-labelledby','companyTab'+companyIndex)}
+    function render(){const c=companies[companyIndex],s=c.steps[stepIndex];renderTabs();q('companyHero').src=c.hero;q('companyHero').alt=c.name+' 公式サイト掲載イメージ';if(c.logo){q('companyLogo').src=c.logo;q('companyLogo').alt=c.name;q('companyLogo').style.display='block';q('companyNameText').style.display='none'}else{q('companyLogo').style.display='none';q('companyNameText').style.display='block';q('companyNameText').textContent=c.name}q('scenarioType').textContent=c.type;q('scenarioTitle').textContent=c.title;q('demoAccount').textContent=c.account;q('officialFacts').innerHTML=c.facts.map(x=>'<li>'+x+'</li>').join('');q('whyOA').textContent=c.why;q('capList').innerHTML=c.caps.map((x,i)=>'<span class="'+(i<=stepIndex+1?'on':'')+'">'+x+'</span>').join('');q('stageTabs').innerHTML='';c.steps.forEach((st,i)=>{const b=document.createElement('button');b.type='button';b.className='stage-tab'+(i===stepIndex?' active':'');b.textContent=(i+1)+' '+st[0];b.setAttribute('aria-pressed',i===stepIndex?'true':'false');b.onclick=()=>{stepIndex=i;render()};q('stageTabs').appendChild(b)});q('stepTitle').textContent=s[1];q('stepBody').textContent=s[2];q('demoUser').textContent=s[3];q('demoAI').textContent=s[4];q('demoStatus').textContent=s[5];q('demoLiveImage').style.backgroundImage="url('"+c.hero+"')";q('demoLiveTitle').textContent=s[6];q('demoLiveSub').textContent=s[7];q('demoFacts').innerHTML=s[8].map(x=>'<span>'+x+'</span>').join('');q('demoNext').textContent=s[9];q('demoNext').setAttribute('aria-label',s[9]+(stepIndex<3?'。次のステップへ':'。継続サポートを表示'));q('demoNext').onclick=()=>{if(stepIndex<3){stepIndex+=1;render()}else{q('demoStatus').textContent='継続サポートの内容を表示しています';q('demoNext').textContent='表示中'}}}
+    q('demoMic').onclick=()=>{q('voiceLayer').classList.add('show');setTimeout(()=>{q('voiceLayer').classList.remove('show');stepIndex=Math.min(stepIndex+1,3);render()},1150)};
+    document.querySelector('.live-action').onclick=()=>document.getElementById('scenarios').scrollIntoView({behavior:'smooth'});
+    render();
+  </script>
+</body>
+</html>
